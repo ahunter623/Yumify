@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+#from yumify_django import views
+#from .views import index, recipe_detail, create_recipe, like, unlike
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
