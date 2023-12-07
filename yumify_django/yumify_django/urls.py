@@ -15,17 +15,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from . import views
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+
+#from . import views
+#from yumify import views
 #from yumify_django import views
 #from .views import index, recipe_detail, create_recipe, like, unlike
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='recipes:index'),
-    path('<int:recipe_id>', views.recipe_detail, name='recipes:recipe_detail'),
-    path('create/', views.create_recipe, name='recipes:create_recipe'),
-    path('like/<int:recipe_id>', views.like_recipe, name='recipes:like_recipe'),
-    path('unlike/<int:recipe_id>', views.unlike_recipe, name='recipes:unlike_recipe'),
+    path('', include('core.urls'))
 ]
+
+urlpatterns = urlpatterns+static(settings.MEDIA_URL,
+document_root=settings.MEDIA_ROOT)
